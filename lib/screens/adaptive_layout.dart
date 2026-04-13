@@ -12,6 +12,14 @@ class AdaptiveLayout extends StatefulWidget {
 }
 
 class _AdaptiveLayoutState extends State<AdaptiveLayout> {
+  int selectedListId = 0;
+
+  void _onContactListSelected(int listId) {
+    setState(() {
+      selectedListId = listId;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -19,11 +27,34 @@ class _AdaptiveLayoutState extends State<AdaptiveLayout> {
         final isLargeScreen = constraints.maxWidth > largeScreenMinWidth;
 
         if (isLargeScreen) {
-          return const Text('Large screen layout');
+          return _buildLargeScreenLayout();
         } else {
           return const ContactGroupsPage();
         }
       },
+    );
+  }
+
+  Widget _buildLargeScreenLayout() {
+    return CupertinoPageScaffold(
+      backgroundColor: CupertinoColors.extraLightBackgroundGray,
+      child: SafeArea(
+        child: Row(
+          children: [
+            SizedBox(
+              width: 320,
+              child: Text('Sidebar placeholder'),
+            ),
+            Container(
+              width: 1,
+              color: CupertinoColors.separator
+            ),
+            Expanded(
+              child: Text('Details placeholder'),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

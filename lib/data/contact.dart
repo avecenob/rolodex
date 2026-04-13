@@ -7,9 +7,10 @@ class Contact {
     this.suffix,
   });
 
-  final String id;
+  final int id;
   final String firstName;
   final String lastName;
   final String? middleName;
   final String? suffix;
 }
+
